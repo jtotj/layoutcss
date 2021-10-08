@@ -1,0 +1,175 @@
+@import 'reset';
+
+
+.red{border:1px solid red;}
+.blue{border:1px solid blue;}
+.black{border:1px solid black;}
+.green{border:1px solid green;}
+.pink{border:1px solid pink;}
+.navy{border:1px solid navy;}
+.gray{border:1px solid gray;}
+
+//  flex-shrink: 0 이면 자동으로 줄지 않는다.   flex-shrink: 1이면 자동으로 준다. 2면 줄어드는 비율이 2
+.float{position: absolute;left:0;top:-20px;}
+// layout
+.wrap{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    header{
+        height:100px;
+    }
+    .container{
+        max-width:1000px;
+        width:100%;
+        display: flex;
+        flex:1;
+        .map-wrap{
+            position: relative;
+            flex:1; //flex :0 0 1; [ <‘flex-grow’> <‘flex-shrink’>? || <‘flex-basis’> auto는 길이에  영향 
+             /* grow 1(늘어남), shrink 1(줄어듦), 기본 크기 auto(50px)*/
+            display: flex;
+            .list-panel{
+                width:100px;
+                overflow-wrap: break-word; //줄바꿈
+                overflow: hidden;
+            }
+            .map{flex:1;}
+        }
+    }
+}
+
+
+/*header*/
+
+.header{
+    display: flex;
+    width: 100%;
+    .logo,
+    .search,
+    .gnb {
+    flex: 0 0 auto; /* flex:none */
+    }
+    .logo{
+        width:150px;
+    }
+    .gnb{
+        flex:1;
+        //사이즈는 fix
+        ul{
+            display: flex;
+            overflow-wrap:break-word;
+            li{
+                min-width:50px;
+            }
+        }
+    }
+    .search{
+        width: 150px;
+        margin-left:auto;//이걸로 우측에 붙는다. if margin-top auto 면 바닥에 붙는다
+    }
+
+}
+
+.title_wrap {
+    display: inline-flex;
+    max-width: 100%;
+ }
+ //overflow
+ .title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+ }
+
+
+
+ #grid{
+     .container{
+         display: grid;
+         grid-template-columns: 200px 200px 500px; 
+         .item{
+             width: 100%;
+             height:100%;
+             &:nth-child(odd){background: pink;}
+             &:nth-child(even){background: green;}
+         }
+     }
+ }
+
+ #grid2{
+     margin-top: 50px;
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 2fr 100px; 
+        //grid-template-columns: repeat(5, 1fr)  ==> 1fr 1fr 1fr 1fr 1fr
+        //grid-template-row:repeat(3, minmax(100px, auto)) min max 값 설정 //min height 설정
+        .item{
+            width: 100%;
+            height:100%;
+            &:nth-child(odd){background: pink;}
+            &:nth-child(even){background: green;}
+        }
+    }
+}
+
+
+#grid3{
+    margin-top: 50px;
+   .container{
+       display: grid;
+       grid-template-columns: 1fr 2fr 100px;
+       grid-template-rows:repeat(3, minmax(100px, auto));//min height 설정
+       row-gap: 10px;//top-bottom 간격
+       column-gap: 20px;; //left right 간격
+       //gap: 20px; row-gap // column-gap 20px
+       .item{
+           width: 100%;
+           height:100%;
+           &:nth-child(odd){background: pink;}
+           &:nth-child(even){background: green;}
+       }
+   }
+}
+
+
+#grid4{
+    margin-top: 50px;
+   .container{
+       display: grid;
+       grid-template-columns: 100px 2fr 100px;
+       grid-auto-rows: minmax(100px, auto);
+       .item{
+           width: 100%;
+           height:100%;
+           &:nth-child(odd){background: pink;}
+           &:nth-child(even){background: green;}
+       }
+   }
+}
+
+
+#grid5{
+    margin-top: 50px;
+   .container{
+       display: grid;
+       grid-template-columns: 100px 2fr 100px;
+       grid-auto-rows: minmax(100px, auto);
+       gap:10px;
+       .item{
+           width: 100%;
+           height:100%;
+           &:nth-child(odd){background: pink;}
+           &:nth-child(even){background: green;}
+           &:nth-child(1) {
+                /* 1번 라인에서 2칸 */
+                grid-column: 1 / span 2;
+                /* 1번 라인에서 3칸 */
+                grid-row: 1 / span 3;
+            }
+       }
+   }
+}
